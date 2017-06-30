@@ -17,6 +17,7 @@ public class Main {
                 "Your answer is :");
         answer = scanner.next();
         userInput(scanner, answer);
+        userInput(scanner, "1");
         System.out.println("I'm done");
 
 
@@ -34,6 +35,10 @@ public class Main {
                     numbers[i] = scanner.nextInt();
                 }
                 findDistance(numbers);
+//                tests
+//                findDistance(new int[]{55, 22, 33, 5, 12, 88, 11, 4}); // 4
+//                findDistance(new int[]{55, 0, 33, 5, 11, 88, 11, 88}); // 2
+//                findDistance(new int[]{1, 40, 33, 55, 11, 88, 11, 8}); // 7
                 break;
             case "2":
                 System.out.println("please type some words separated by SPACE and press ENTER ");
@@ -72,13 +77,14 @@ public class Main {
         if (startAt == numbers.length) {
             return minimum;
         }
+        if (minimum== excluded){
+            minimum+=1;
+        }
 
-        for (; startAt < numbers.length; startAt++) {
-            if (numbers[minimum] < numbers[startAt] &&
-                    minimum != excluded) {
-                return startAt(numbers, minimum, startAt + 1, excluded);
-            } else {
-                return startAt(numbers, startAt, startAt + 1, excluded);
+        for (int i = startAt; i < numbers.length; i++) {
+            if (numbers[minimum] > numbers[i] &&
+                    i != excluded) {
+                return startAt(numbers, i, startAt + 1, excluded);
             }
         }
         return minimum;
@@ -87,6 +93,9 @@ public class Main {
     }
 
     private static int calculateDistance(int first, int second) {
+        if (second == 0 || first == 0) {
+            return first + second;
+        }
         if (first > second) {
             return first - second;
         } else return second - first;
