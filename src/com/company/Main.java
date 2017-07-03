@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +18,6 @@ public class Main {
                 "Your answer is :");
         answer = scanner.next();
         userInput(scanner, answer);
-        userInput(scanner, "1");
         System.out.println("I'm done");
 
 
@@ -42,8 +42,8 @@ public class Main {
                 break;
             case "2":
                 System.out.println("please type some words separated by SPACE and press ENTER ");
-
-                doRevert(scanner.next().split(" "));
+                doRevert("MAMA", "MULA", "RAMU");
+//                doRevert(scanner.next().split(","));
                 break;
             default:
                 System.out.println("Please type 1 or 2 ");
@@ -77,8 +77,8 @@ public class Main {
         if (startAt == numbers.length) {
             return minimum;
         }
-        if (minimum== excluded){
-            minimum+=1;
+        if (minimum == excluded) {
+            minimum += 1;
         }
 
         for (int i = startAt; i < numbers.length; i++) {
@@ -103,7 +103,15 @@ public class Main {
     }
 
     private static void doRevert(String... words) {
+        System.out.println("recive : " + Arrays.toString(words));
 
+        for (String word : words) {
+            for (int i = word.toCharArray().length-1; i != -1; i--) {
+                System.out.print(word.toCharArray()[i]);
+            }
+            System.out.print(" ");
+        }
+        System.out.println("\n");
     }
 
 
